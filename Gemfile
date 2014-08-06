@@ -38,6 +38,15 @@ end
 # Use Simple Form
 gem 'simple_form'
 
+# Use CarrierWave to upload XML files
+gem 'carrierwave'
+
+# Use Figara for Amazon AWS
+gem 'figaro'
+
+# Fob for use with CarrierWave and Figaro
+gem "fog", "~> 1.3.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

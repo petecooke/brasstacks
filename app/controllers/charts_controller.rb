@@ -14,7 +14,7 @@ class ChartsController < ApplicationController
 	end
 
 	def chart_params
-		params.require(:chart).permit(:race_date, :track_name, :race_number, :entry_name, :official_finish)
+		params.require(:chart).permit(:race_date, :track_name, :race_number, :entry_name, :official_finish, :race_type, :xmlFile, :chart)
 	end
 end
 
