@@ -4,8 +4,8 @@
 
 	<%= simple_form_for @chart do |f| %>
 
-		<%= f.input :race_date %>
-	  	<%= f.input :track_name %>
+		<%= f.input :race_date, :as => :date_picker %>
+		<%= f.input :track_name %>
 	  	<%= f.input :race_number %>
 	  	<%= f.input :entry_name %>
 	  	<%= f.input :official_finish %>
