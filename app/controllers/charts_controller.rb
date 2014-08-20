@@ -13,6 +13,10 @@ class ChartsController < ApplicationController
 		@charts = Chart.all
 	end
 
+	def show
+		@chart = Chart.find(params[:id])
+	end
+
 	def chart_params
 		params.require(:chart).permit(:race_date, :track_name, :race_number, :entry_name, :official_finish, :race_type, :xmlFile, :chart)
 	end

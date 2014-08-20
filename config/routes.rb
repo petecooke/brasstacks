@@ -1,6 +1,6 @@
 Brasstacks::Application.routes.draw do
   root 'static_pages#index'
-  resources :charts, :only => [:new, :create, :index]
+  resources :charts, :only => [:new, :create, :index, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

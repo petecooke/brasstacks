@@ -48,6 +48,9 @@ gem 'figaro'
 # Fob for use with CarrierWave and Figaro
 gem "fog", "~> 1.3.1"
 
+# Use nokogiri to read XML
+gem 'nokogiri'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
