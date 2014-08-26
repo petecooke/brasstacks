@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821012611) do
+ActiveRecord::Schema.define(version: 20140825230853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,44 @@ ActiveRecord::Schema.define(version: 20140821012611) do
     t.datetime "updated_at"
     t.string   "race_type"
     t.string   "chart"
+  end
+
+  create_table "entries", force: true do |t|
+    t.integer  "race_id"
+    t.integer  "program_num"
+    t.string   "name"
+    t.integer  "age"
+    t.string   "meds"
+    t.string   "equip"
+    t.float    "odds"
+    t.string   "official_finish"
+    t.integer  "speed_rating"
+    t.string   "jockey_first_name"
+    t.string   "jockey_last_name"
+    t.string   "trainer_first_name"
+    t.string   "trainer_last_name"
+    t.string   "owner"
+    t.string   "comment"
+    t.float    "win_payoff"
+    t.float    "place_payoff"
+    t.float    "show_payoff"
+    t.float    "show_payoff2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "races", force: true do |t|
+    t.integer  "chart_id"
+    t.integer  "number"
+    t.string   "breed"
+    t.string   "race_type"
+    t.string   "restriction"
+    t.string   "distance"
+    t.string   "dist_unit"
+    t.string   "surface"
+    t.string   "condition"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

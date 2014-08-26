@@ -1,4 +1,5 @@
 class Chart < ActiveRecord::Base
+	has_many :races
 	
 	before_create :parse_xml
 
@@ -23,7 +24,10 @@ class Chart < ActiveRecord::Base
 		self.track_name = element.content
 
 		puts self.track_name
-		
+
+
+
+
 		# screen dump
 		# puts element.content
 
@@ -31,6 +35,19 @@ class Chart < ActiveRecord::Base
 
 		doc.css('CHART RACE').each do |element|
 
+			race = self.races.create(
+				:number =>  element['NUMBER'].to_i,
+				# :race_date => doc.css('CHART')['RACE_DATE'].to_d,
+				:breed => element.css('BREED').first.content,
+				:race_type => element.css('TYPE').first.content,
+				:restriction => element.css('AGE_RESTRICTIONS').first.content,
+				:distance => element.css('DISTANCE').first.content,
+				:dist_unit => element.css('DIST_UNIT').first.content,
+				:surface => element.css('COURSE_DESC').first.content,
+				:condition => element.css('TRK_COND').first.content
+			)
+
+			# console output
 			puts "\tRace Number: " + element['NUMBER']
 
 			puts "\t" + 
@@ -43,6 +60,28 @@ class Chart < ActiveRecord::Base
 				 "Track Condition: " + element.css('TRK_COND').first.content
 
 			 	element.css('ENTRY').each do |sub|
+
+			 		race.entries.create(
+			 			:program_num => sub.css('PROGRAM_NUM').first.content.to_i,
+						:name => sub.css('NAME').first.content,
+						:age => sub.css('AGE').first.content.to_i,
+						:meds => sub.css('MEDS').first.content,
+						:equip => sub.css('EQUIP').first.content,
+						:odds => sub.css('DOLLAR_ODDS').first.content.to_f,
+						:official_finish => sub.css('OFFICIAL_FIN').first.content.to_i,
+						:speed_rating => sub.css('SPEED_RATING').first.content.to_i,
+						:jockey_first_name => sub.css('JOCKEY FIRST_NAME').first.content,
+						:jockey_last_name => sub.css('JOCKEY LAST_NAME').first.content,
+						:trainer_first_name => sub.css('TRAINER FIRST_NAME').first.content,
+						:trainer_last_name => sub.css('TRAINER LAST_NAME').first.content,
+						:owner => sub.css('OWNER').first.content,
+						:comment => sub.css('COMMENT').first.content,
+						:win_payoff => sub.css('WIN_PAYOFF').first.content.to_f,
+						:place_payoff => sub.css('PLACE_PAYOFF').first.content.to_f,
+						:show_payoff => sub.css('SHOW_PAYOFF').first.content.to_f,
+						:show_payoff2 => sub.css('SHOW_PAYOFF2').first.content.to_f
+			 		)
+
 			 		puts "\t" + 
 			 			sub.css('PROGRAM_NUM').first.content + " " +
 			 			sub.css('NAME').first.content + ": " +
@@ -64,12 +103,18 @@ class Chart < ActiveRecord::Base
 	 					" Show: $" + sub.css('SHOW_PAYOFF').first.content +
 	 					" (Show 2: $" + sub.css('SHOW_PAYOFF2').first.content + ")"
 
-
-
 			 	end
 
 			puts "\n"
 		end
+
+		puts "test"
+
+		element = doc.css('CHART')['RACE_DATE']
+
+		self.race_date = element.content.to_date
+
+		puts "race date: " + self.race_date
 
 		# save the change
 		# self.save

@@ -1,1 +1,55 @@
-<%= @chart.track_name %>
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+
+	<h1><%= @chart.track_name %></h1>
+	<h2><%= @chart.race_date %></h2>
+
+	<% @chart.races.each do |race| %>  
+
+		<b>Race Number: <%= race.number %></b> <br />
+		<b><%= race.race_type %> for <%= race.restriction %></b><br />
+		<b><%= race.distance %><%= race.dist_unit %> on <%= race.surface %> (<%= race.condition %>)
+
+		<table class="table table-condensed table-hover">
+			<thead>
+
+				<tr>
+					<th>Program Number</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Meds / Equip</th>
+					<th>Jockey</th>
+					<th>Trainer</th>
+					<tH>Owner</tH>
+
+					<th>Speed Rating</th>
+					<th>Official Finish</th>
+					<tH>Comment</tH>
+				</tr>
+
+			</thead>
+			<tbody>
+				<% race.entries.each do |entry| %>
+
+					<tr>
+						<td><%= entry.program_num %></td>
+						<td><%= entry.name %></td>
+						<td><%= entry.age %></td>
+						<td><%= entry.meds %><%= entry.equip %></td>
+						<td><%= entry.jockey_last_name %>, <%= entry.jockey_first_name %></td>
+						<td><%= entry.trainer_last_name %>, <%= entry.trainer_first_name %>
+						<td><%= entry.owner %>
+
+						<td><%= entry.speed_rating %></td>
+						<td><%= entry.official_finish %></td>
+						<td><%= entry.comment %></td>
+					</tr>
+
+				<% end %>
+
+			</tbody>
+
+		</table>
+
+	<% end %>
+
+</div>
