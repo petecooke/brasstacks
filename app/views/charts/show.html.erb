@@ -6,8 +6,8 @@
 	<% @chart.races.each do |race| %>  
 
 		<b>Race Number: <%= race.number %></b> <br />
-		<b><%= race.race_type %> for <%= race.restriction %></b><br />
-		<b><%= race.distance %><%= race.dist_unit %> on <%= race.surface %> (<%= race.condition %>)
+		<b><%= race.race_level.race_type %> for <%= race.race_level.restriction %></b><br />
+		<b><%= race.race_level.distance %><%= race.race_level.dist_unit %> on <%= race.race_level.surface %> (<%= race.condition %>)
 
 		<table class="table table-condensed table-hover">
 			<thead>

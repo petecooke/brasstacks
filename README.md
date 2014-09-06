@@ -1,14 +1,13 @@
 TODO
 ==============
 
-* remove_column :charts, :XmlFiles :: DONE
 * get data to output on website
 *
 * next steps:
-* add race_date
-* flesh out the view
-* fix the presentation (white box for easier reading) [bootstrap tables]
+* group by jockeys, or other (pull out - follow the race type example)
+* build a new controller/view to list out race levels
 * summarize metrics (some actual use cases)
+* make a delete button
 *
-* Next time:
-* combine Jockey/Trainer data as 
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825230853) do
+ActiveRecord::Schema.define(version: 20140905230038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,18 +52,26 @@ ActiveRecord::Schema.define(version: 20140825230853) do
     t.datetime "updated_at"
   end
 
-  create_table "races", force: true do |t|
-    t.integer  "chart_id"
-    t.integer  "number"
-    t.string   "breed"
+  create_table "race_levels", force: true do |t|
     t.string   "race_type"
     t.string   "restriction"
     t.string   "distance"
     t.string   "dist_unit"
     t.string   "surface"
-    t.string   "condition"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "races", force: true do |t|
+    t.integer  "chart_id"
+    t.integer  "number"
+    t.string   "breed"
+    t.string   "condition"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "race_level_id"
+  end
+
+  add_index "races", ["race_level_id"], name: "index_races_on_race_level_id", using: :btree
 
 end

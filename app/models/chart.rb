@@ -23,6 +23,8 @@ class Chart < ActiveRecord::Base
 
 		self.track_name = element.content
 
+		self.race_date = doc.css('CHART').first['RACE_DATE'].to_date
+
 		puts self.track_name
 
 
@@ -35,15 +37,25 @@ class Chart < ActiveRecord::Base
 
 		doc.css('CHART RACE').each do |element|
 
-			race = self.races.create(
+			race_type = element.css('TYPE').first.content
+			restriction = element.css('AGE_RESTRICTIONS').first.content
+			distance = element.css('DISTANCE').first.content
+			dist_unit = element.css('DIST_UNIT').first.content
+			surface = element.css('COURSE_DESC').first.content	
+
+			race_level = RaceLevel.find_or_create_by_attributes(
+				:race_type => race_type,
+				:restriction => restriction,
+				:distance => distance,
+				:dist_unit => dist_unit,
+				:surface => surface
+			)	
+
+			# race = self.races.create(
+			race = self.races.build(
+				:race_level_id => race_level.id,
 				:number =>  element['NUMBER'].to_i,
-				# :race_date => doc.css('CHART')['RACE_DATE'].to_d,
 				:breed => element.css('BREED').first.content,
-				:race_type => element.css('TYPE').first.content,
-				:restriction => element.css('AGE_RESTRICTIONS').first.content,
-				:distance => element.css('DISTANCE').first.content,
-				:dist_unit => element.css('DIST_UNIT').first.content,
-				:surface => element.css('COURSE_DESC').first.content,
 				:condition => element.css('TRK_COND').first.content
 			)
 
@@ -61,7 +73,8 @@ class Chart < ActiveRecord::Base
 
 			 	element.css('ENTRY').each do |sub|
 
-			 		race.entries.create(
+			 		# race.entries.create(
+			 		race.entries.build(
 			 			:program_num => sub.css('PROGRAM_NUM').first.content.to_i,
 						:name => sub.css('NAME').first.content,
 						:age => sub.css('AGE').first.content.to_i,
@@ -108,13 +121,9 @@ class Chart < ActiveRecord::Base
 			puts "\n"
 		end
 
-		puts "test"
+		element = doc.css('CHART').first['RACE_DATE'].to_date
 
-		element = doc.css('CHART')['RACE_DATE']
-
-		self.race_date = element.content.to_date
-
-		puts "race date: " + self.race_date
+		puts "race date: " + element.to_s  #self.race_date
 
 		# save the change
 		# self.save
