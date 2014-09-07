@@ -2,19 +2,26 @@
 
 	<h1>Charts</h1>
 
-<% @charts.each do |chart| %>
-	<div class="booyah-box col-xs-10 col-xs-offset-1">
-		<i><%= chart.race_date %></i><br /><br />
-		<p><%= chart.track_name %></p><br />
-		<p><%= chart.race_number %></p><br />
-		<p><%= chart.entry_name %></p><br />
-		<p><%= chart.official_finish %></p><br />
-		<p><%= chart.race_type %></p><br />
-		<p><%= chart.chart %>
+	<div>
+		<% @charts.each do |chart| %>
+			<div class="booyah-box col-xs-10 col-xs-offset-1">
+				<p>
+					<%= chart.track_name %> <%= chart.race_date %> - 
+					<%= link_to 'Show Chart', chart_path(chart.id) %>
+				</p>
 
-	</div>
+			</div>
 
-<% end %>			
+		<% end %>
+	</div>		
+
+	<br /><br /><br />
+
+
+<div class="text-right">
+	<p>
+		Go here to add a <%= link_to 'new chart', new_chart_path %>
+	</p>
+</div>	
 
 </div>
-

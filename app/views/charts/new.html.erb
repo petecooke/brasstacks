@@ -1,6 +1,6 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
-	<h1>New chart here</h1>
+	<h1>Upload a new chart</h1>
 
 	<%= simple_form_for @chart do |f| %>
 
@@ -11,6 +11,7 @@
 	  	<%= f.input :official_finish %>
 	  	<%= f.input :race_type %> -->
 	  	<%= f.input :chart %>
+	  	<br />
 	  	<%= f.submit 'Upload Chart', :class => 'btn btn-primary' %>
 
 	<% end %>
