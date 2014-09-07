@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RaceLevelControllerTest < ActionController::TestCase
+class RaceLevelsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

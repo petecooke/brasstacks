@@ -1,2 +1,0 @@
-module RaceLevelHelper
-end

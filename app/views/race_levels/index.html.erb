@@ -1,0 +1,12 @@
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+
+	<h1>Race Levels</h1>
+
+	<% @racelevels.each do |racelevel| %>  
+
+	<b><%= racelevel.race_type %> for <%= race_level.restriction %></b><br />
+		<b><%= race_level.distance %><%= race_level.dist_unit %> on <%= race_level.surface %>
+
+	<% end %>
+
+</div>
