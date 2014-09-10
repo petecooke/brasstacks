@@ -5,11 +5,10 @@
 	<% @racelevels.each do |racelevel| %>  
 
 		<b><%= racelevel.race_type %> for <%= racelevel.restriction %></b>
-		<b><%= racelevel.distance %><%= racelevel.dist_unit %> on <%= racelevel.surface %>
+		<%= racelevel.distance %><%= racelevel.dist_unit %> on <%= racelevel.surface %> - 
+		<%= racelevel.class_rating %>
 		<br />
 
 	<% end %>
-
-
 
 </div>

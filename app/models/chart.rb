@@ -42,13 +42,15 @@ class Chart < ActiveRecord::Base
 			distance = element.css('DISTANCE').first.content
 			dist_unit = element.css('DIST_UNIT').first.content
 			surface = element.css('COURSE_DESC').first.content	
+			class_rating = element.css('CLASS_RATING').first.content
 
 			race_level = RaceLevel.find_or_create_by_attributes(
 				:race_type => race_type,
 				:restriction => restriction,
 				:distance => distance,
 				:dist_unit => dist_unit,
-				:surface => surface
+				:surface => surface,
+				:class_rating => class_rating
 			)	
 
 			# race = self.races.create(
@@ -69,6 +71,7 @@ class Chart < ActiveRecord::Base
 				 "Distance: " + element.css('DISTANCE').first.content + 
 				 element.css('DIST_UNIT').first.content + " " +
 				 element.css('COURSE_DESC').first.content + "\n\t" +
+				 element.css('CLASS_RATING').first.content + "\n\t" +
 				 "Track Condition: " + element.css('TRK_COND').first.content
 
 			 	element.css('ENTRY').each do |sub|
@@ -128,6 +131,14 @@ class Chart < ActiveRecord::Base
 		# save the change
 		# self.save
 
+	end
+
+	def chart_destroy
+
+	end
+
+	def chart_destroy_all
+		Chart.destroy_all
 	end
 
 end
