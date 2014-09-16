@@ -1,7 +1,10 @@
 Brasstacks::Application.routes.draw do
   root 'static_pages#index'
-  resources :charts, :only => [:new, :create, :index, :show]
+  resources :charts, :only => [:new, :create, :index, :show, :destroy]
   resources :race_levels, :only => [:index]
+
+  delete 'charts/' => 'charts#destroy_all'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

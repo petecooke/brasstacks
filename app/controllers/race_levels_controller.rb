@@ -1,7 +1,7 @@
 class RaceLevelsController < ApplicationController
 
 	def index
-		@racelevels = RaceLevel.all
+		@racelevels = RaceLevel.order("class_rating DESC").all
 	end
 
 end

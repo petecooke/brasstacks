@@ -17,8 +17,11 @@ class ChartsController < ApplicationController
 		@chart = Chart.find(params[:id])
 	end
 
-	def chart_destroy_all
+	def destroy_all
 		Chart.destroy_all
+		RaceLevel.destroy_all
+
+		redirect_to charts_path
 	end
 
 	def chart_params

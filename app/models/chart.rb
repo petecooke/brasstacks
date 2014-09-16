@@ -1,5 +1,5 @@
 class Chart < ActiveRecord::Base
-	has_many :races
+	has_many :races, :dependent => :destroy
 	
 	before_create :parse_xml
 
@@ -61,6 +61,7 @@ class Chart < ActiveRecord::Base
 				:condition => element.css('TRK_COND').first.content
 			)
 
+
 			# console output
 			puts "\tRace Number: " + element['NUMBER']
 
@@ -76,8 +77,17 @@ class Chart < ActiveRecord::Base
 
 			 	element.css('ENTRY').each do |sub|
 
+					jockey_first_name = sub.css('JOCKEY FIRST_NAME').first.content
+					jockey_last_name = sub.css('JOCKEY LAST_NAME').first.content
+
+					jockey = Jockey.find_or_create_by_attributes(
+						:first_name => jockey_first_name,
+						:last_name => jockey_last_name
+					)
+
 			 		# race.entries.create(
 			 		race.entries.build(
+			 			:jockey => jockey,
 			 			:program_num => sub.css('PROGRAM_NUM').first.content.to_i,
 						:name => sub.css('NAME').first.content,
 						:age => sub.css('AGE').first.content.to_i,
@@ -86,8 +96,8 @@ class Chart < ActiveRecord::Base
 						:odds => sub.css('DOLLAR_ODDS').first.content.to_f,
 						:official_finish => sub.css('OFFICIAL_FIN').first.content.to_i,
 						:speed_rating => sub.css('SPEED_RATING').first.content.to_i,
-						:jockey_first_name => sub.css('JOCKEY FIRST_NAME').first.content,
-						:jockey_last_name => sub.css('JOCKEY LAST_NAME').first.content,
+						# :jockey_first_name => sub.css('JOCKEY FIRST_NAME').first.content,
+						# :jockey_last_name => sub.css('JOCKEY LAST_NAME').first.content,
 						:trainer_first_name => sub.css('TRAINER FIRST_NAME').first.content,
 						:trainer_last_name => sub.css('TRAINER LAST_NAME').first.content,
 						:owner => sub.css('OWNER').first.content,
@@ -131,14 +141,6 @@ class Chart < ActiveRecord::Base
 		# save the change
 		# self.save
 
-	end
-
-	def chart_destroy
-
-	end
-
-	def chart_destroy_all
-		Chart.destroy_all
 	end
 
 end

@@ -4,7 +4,7 @@ class RaceLevel < ActiveRecord::Base
 
 	def self.find_or_create_by_attributes(attributes) 
 
-		race_level = RaceLevel.where(attributes)
+		race_level = RaceLevel.where(attributes).first
 
 		if race_level.present?
 

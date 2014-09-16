@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910023405) do
+ActiveRecord::Schema.define(version: 20140914234417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 20140910023405) do
     t.float    "odds"
     t.string   "official_finish"
     t.integer  "speed_rating"
-    t.string   "jockey_first_name"
-    t.string   "jockey_last_name"
     t.string   "trainer_first_name"
     t.string   "trainer_last_name"
     t.string   "owner"
@@ -48,6 +46,20 @@ ActiveRecord::Schema.define(version: 20140910023405) do
     t.float    "place_payoff"
     t.float    "show_payoff"
     t.float    "show_payoff2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "jockey_id"
+  end
+
+  add_index "entries", ["jockey_id"], name: "index_entries_on_jockey_id", using: :btree
+
+  create_table "jockeys", force: true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "suffix"
+    t.integer  "key"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
