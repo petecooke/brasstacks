@@ -1,0 +1,12 @@
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+
+	<h1>Jockeys</h1>
+
+	<% @jockeys.each do |jockey| %>  
+	
+		<b><%= jockey.last_name %><% if jockey.suffix %><%= jockey.suffix %>.<% end %></b>, <%= jockey.first_name %> <%= jockey.middle_name %> [KEY: <%= jockey.key %> TYPE: <%= jockey.jockey_type %>]
+		<br />
+
+	<% end %>
+
+</div>

@@ -6,7 +6,7 @@ class CreateJockeys < ActiveRecord::Migration
 			t.string "last_name"
 			t.string "suffix"
 			t.integer "key"
-			t.string "type"
+			t.string "jockey_type"
 			t.timestamps
   	end
 

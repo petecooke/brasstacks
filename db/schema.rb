@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140914234417) do
+ActiveRecord::Schema.define(version: 20140924000912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 20140914234417) do
     t.float    "odds"
     t.string   "official_finish"
     t.integer  "speed_rating"
-    t.string   "trainer_first_name"
-    t.string   "trainer_last_name"
     t.string   "owner"
     t.string   "comment"
     t.float    "win_payoff"
@@ -49,9 +47,11 @@ ActiveRecord::Schema.define(version: 20140914234417) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "jockey_id"
+    t.integer  "trainer_id"
   end
 
   add_index "entries", ["jockey_id"], name: "index_entries_on_jockey_id", using: :btree
+  add_index "entries", ["trainer_id"], name: "index_entries_on_trainer_id", using: :btree
 
   create_table "jockeys", force: true do |t|
     t.string   "first_name"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20140914234417) do
     t.string   "last_name"
     t.string   "suffix"
     t.integer  "key"
-    t.string   "type"
+    t.string   "jockey_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,5 +86,16 @@ ActiveRecord::Schema.define(version: 20140914234417) do
   end
 
   add_index "races", ["race_level_id"], name: "index_races_on_race_level_id", using: :btree
+
+  create_table "trainers", force: true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "suffix"
+    t.integer  "key"
+    t.string   "trainer_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

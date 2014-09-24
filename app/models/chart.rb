@@ -37,6 +37,7 @@ class Chart < ActiveRecord::Base
 
 		doc.css('CHART RACE').each do |element|
 
+			#RACE LEVEL
 			race_type = element.css('TYPE').first.content
 			restriction = element.css('AGE_RESTRICTIONS').first.content
 			distance = element.css('DISTANCE').first.content
@@ -53,6 +54,7 @@ class Chart < ActiveRecord::Base
 				:class_rating => class_rating
 			)	
 
+			#RACE
 			# race = self.races.create(
 			race = self.races.build(
 				:race_level_id => race_level.id,
@@ -75,19 +77,50 @@ class Chart < ActiveRecord::Base
 				 element.css('CLASS_RATING').first.content + "\n\t" +
 				 "Track Condition: " + element.css('TRK_COND').first.content
 
+				# ENTRY
 			 	element.css('ENTRY').each do |sub|
 
+			 		# JOCKEY
 					jockey_first_name = sub.css('JOCKEY FIRST_NAME').first.content
+					jockey_middle_name = sub.css('JOCKEY MIDDLE_NAME').first.content
 					jockey_last_name = sub.css('JOCKEY LAST_NAME').first.content
+					jockey_suffix = sub.css('JOCKEY SUFFIX').first.content
+					jockey_key = sub.css('JOCKEY KEY').first.content
+					# jockey_type = sub.css('JOCKEY TYPE').first.content
 
 					jockey = Jockey.find_or_create_by_attributes(
 						:first_name => jockey_first_name,
-						:last_name => jockey_last_name
+						:middle_name => jockey_middle_name,
+						:last_name => jockey_last_name,
+						:suffix => jockey_suffix,
+						:key => jockey_key,
+						# :jockey_type => jockey_type
+
 					)
 
+					# TRAINER
+					trainer_first_name = sub.css('TRAINER FIRST_NAME').first.content
+					trainer_middle_name = sub.css('TRAINER MIDDLE_NAME').first.content
+					trainer_last_name = sub.css('TRAINER LAST_NAME').first.content
+					trainer_suffix = sub.css('TRAINER SUFFIX').first.content
+					trainer_key = sub.css('TRAINER KEY').first.content
+					trainer_type = sub.css('TRAINER TYPE').first.content
+
+					trainer = Trainer.find_or_create_by_attributes(
+						:first_name => trainer_first_name,
+						:middle_name => trainer_middle_name,
+						:last_name => trainer_last_name,
+						:suffix => trainer_suffix,
+						:key => trainer_key,
+						:trainer_type => trainer_type
+
+					)					
+
+					# RACE ENTRY
 			 		# race.entries.create(
 			 		race.entries.build(
 			 			:jockey => jockey,
+			 			:trainer => trainer,
 			 			:program_num => sub.css('PROGRAM_NUM').first.content.to_i,
 						:name => sub.css('NAME').first.content,
 						:age => sub.css('AGE').first.content.to_i,
@@ -98,8 +131,8 @@ class Chart < ActiveRecord::Base
 						:speed_rating => sub.css('SPEED_RATING').first.content.to_i,
 						# :jockey_first_name => sub.css('JOCKEY FIRST_NAME').first.content,
 						# :jockey_last_name => sub.css('JOCKEY LAST_NAME').first.content,
-						:trainer_first_name => sub.css('TRAINER FIRST_NAME').first.content,
-						:trainer_last_name => sub.css('TRAINER LAST_NAME').first.content,
+						# :trainer_first_name => sub.css('TRAINER FIRST_NAME').first.content,
+						# :trainer_last_name => sub.css('TRAINER LAST_NAME').first.content,
 						:owner => sub.css('OWNER').first.content,
 						:comment => sub.css('COMMENT').first.content,
 						:win_payoff => sub.css('WIN_PAYOFF').first.content.to_f,

@@ -15,17 +15,17 @@
 		<% end %>
 	</div>		
 
-	<br /><br /><br />
+	<br /><br /><br /><br />
 
 	<div class="text-left destroy-charts">
 		<p>
-			<%= link_to 'Destroy all charts', charts_path(), :method => :delete %>
+			<%= link_to 'Destroy all charts', charts_path(), :method => :delete, :class => 'btn btn-primary' %>
 		</p>
 	</div>	
 
 	<div class="text-right new-charts">
 		<p>
-			Go here to add a <%= link_to 'new chart', new_chart_path %>
+			<%= link_to 'Add new chart', new_chart_path, :class => 'btn btn-primary' %>
 		</p>
 	</div>
 

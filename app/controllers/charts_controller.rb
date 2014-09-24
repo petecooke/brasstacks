@@ -20,6 +20,8 @@ class ChartsController < ApplicationController
 	def destroy_all
 		Chart.destroy_all
 		RaceLevel.destroy_all
+		Jockey.destroy_all
+		Trainer.destroy_all
 
 		redirect_to charts_path
 	end
