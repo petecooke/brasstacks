@@ -4,6 +4,7 @@ Brasstacks::Application.routes.draw do
   resources :race_levels, :only => [:index]
   resources :jockeys, :only => [:index]
   resources :trainers, :only => [:index]
+  resources :owners, :only => [:index]
 
   delete 'charts/' => 'charts#destroy_all'
 

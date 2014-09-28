@@ -113,14 +113,21 @@ class Chart < ActiveRecord::Base
 						:suffix => trainer_suffix,
 						:key => trainer_key,
 						:trainer_type => trainer_type
+					)	
 
-					)					
+					# OWNER
+					owner_name = sub.css('OWNER').first.content
+
+					owner = Owner.find_or_create_by_attributes(
+						:owner_name => owner_name
+					)
 
 					# RACE ENTRY
 			 		# race.entries.create(
 			 		race.entries.build(
 			 			:jockey => jockey,
 			 			:trainer => trainer,
+			 			:owner => owner,
 			 			:program_num => sub.css('PROGRAM_NUM').first.content.to_i,
 						:name => sub.css('NAME').first.content,
 						:age => sub.css('AGE').first.content.to_i,
@@ -133,7 +140,7 @@ class Chart < ActiveRecord::Base
 						# :jockey_last_name => sub.css('JOCKEY LAST_NAME').first.content,
 						# :trainer_first_name => sub.css('TRAINER FIRST_NAME').first.content,
 						# :trainer_last_name => sub.css('TRAINER LAST_NAME').first.content,
-						:owner => sub.css('OWNER').first.content,
+						# :owner => sub.css('OWNER').first.content,
 						:comment => sub.css('COMMENT').first.content,
 						:win_payoff => sub.css('WIN_PAYOFF').first.content.to_f,
 						:place_payoff => sub.css('PLACE_PAYOFF').first.content.to_f,

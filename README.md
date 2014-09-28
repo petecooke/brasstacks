@@ -9,7 +9,12 @@ TODO
 * destroy a single chart (are you sure? feature)
 * add the meet concept to chart
 * print '.' after jockey suffix if suffix exists
-
-
-
+* add the ability to upload multiple XML files
+*
+*
+*
+*
+*
+*
+* RACE LEVEL view : add count of each race level
 
