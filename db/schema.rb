@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928202607) do
+ActiveRecord::Schema.define(version: 20140929211536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20140928202607) do
   create_table "entries", force: true do |t|
     t.integer  "race_id"
     t.integer  "program_num"
-    t.string   "name"
     t.integer  "age"
     t.string   "meds"
     t.string   "equip"
@@ -48,11 +47,19 @@ ActiveRecord::Schema.define(version: 20140928202607) do
     t.integer  "jockey_id"
     t.integer  "trainer_id"
     t.integer  "owner_id"
+    t.integer  "horse_id"
   end
 
+  add_index "entries", ["horse_id"], name: "index_entries_on_horse_id", using: :btree
   add_index "entries", ["jockey_id"], name: "index_entries_on_jockey_id", using: :btree
   add_index "entries", ["owner_id"], name: "index_entries_on_owner_id", using: :btree
   add_index "entries", ["trainer_id"], name: "index_entries_on_trainer_id", using: :btree
+
+  create_table "horses", force: true do |t|
+    t.string   "horse_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "jockeys", force: true do |t|
     t.string   "first_name"

@@ -22,6 +22,8 @@ class ChartsController < ApplicationController
 		RaceLevel.destroy_all
 		Jockey.destroy_all
 		Trainer.destroy_all
+		Owner.destroy_all
+		Horse.destroy_all
 
 		redirect_to charts_path
 	end

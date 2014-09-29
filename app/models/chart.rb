@@ -122,14 +122,22 @@ class Chart < ActiveRecord::Base
 						:owner_name => owner_name
 					)
 
+					# HORSE
+					horse_name = sub.css('NAME').first.content
+
+					horse = Horse.find_or_create_by_attributes(
+						:horse_name => horse_name
+					)					
+
 					# RACE ENTRY
 			 		# race.entries.create(
 			 		race.entries.build(
 			 			:jockey => jockey,
 			 			:trainer => trainer,
 			 			:owner => owner,
+			 			:horse => horse,
 			 			:program_num => sub.css('PROGRAM_NUM').first.content.to_i,
-						:name => sub.css('NAME').first.content,
+						# :name => sub.css('NAME').first.content,
 						:age => sub.css('AGE').first.content.to_i,
 						:meds => sub.css('MEDS').first.content,
 						:equip => sub.css('EQUIP').first.content,
