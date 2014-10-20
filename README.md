@@ -10,7 +10,7 @@ TODO
 * add the meet concept to chart
 * print '.' after jockey suffix if suffix exists
 * add the ability to upload multiple XML files
-*
+* remove extra columns from charts table
 *
 *
 *

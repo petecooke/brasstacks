@@ -1,0 +1,80 @@
+ id | number | condition | chart_id | race_level_id | id |          race_type          | restriction | distance | dist_unit |  surface   | class_rating 
+----+--------+-----------+----------+---------------+----+-----------------------------+-------------+----------+-----------+------------+--------------
+  1 |      1 | FT        |        1 |             4 |  4 | Claiming                    | 3U          | 600      | F         | Dirt       |          111
+  2 |      2 | FT        |        1 |             5 |  5 | Maiden Claiming             | 3U          | 800      | F         | Dirt       |           85
+  3 |      3 | FT        |        1 |             6 |  6 | Maiden Special Weight       | 3U          | 800      | F         | Dirt       |           93
+  4 |      4 | FM        |        1 |             7 |  7 | Claiming                    | 3UF NW2L    | 800      | F         | Turf       |           79
+  5 |      5 | FT        |        1 |             8 |  8 | Claiming                    | 3U  NW3L    | 650      | F         | Dirt       |           99
+  6 |      6 | FM        |        1 |             9 |  9 | Allowance                   | 3UF NW1$X   | 1100     | F         | Inner turf |           95
+  7 |      7 | FM        |        1 |            10 | 10 | Maiden Special Weight       | 02F         | 600      | F         | Inner turf |           80
+  8 |      8 | FT        |        1 |            11 | 11 | Stakes                      | 3U          | 800      | F         | Dirt       |          121
+  9 |      9 | FM        |        1 |            12 | 12 | Maiden Claiming             | 3U S        | 850      | F         | Turf       |           78
+ 10 |      1 | FT        |        2 |            13 | 13 | Claiming                    | 3UF NW3L    | 650      | F         | Dirt       |           84
+ 11 |      2 | FT        |        2 |            14 | 14 | Maiden Claiming             | 3U          | 600      | F         | Dirt       |           77
+ 12 |      3 | FT        |        2 |            15 | 15 | Allowance Optional Claiming | 3U SNW2$X   | 650      | F         | Dirt       |          107
+ 13 |      4 | FM        |        2 |            16 | 16 | Claiming                    | 3U          | 700      | F         | Turf       |          105
+ 14 |      5 | FM        |        2 |            17 | 17 | Allowance                   | 03  NW1$X   | 850      | F         | Inner turf |           95
+ 15 |      6 | FT        |        2 |            18 | 18 | Claiming                    | 3U  NW2L    | 650      | F         | Dirt       |           90
+ 16 |      7 | FM        |        2 |            19 | 19 | Maiden Special Weight       | 02          | 800      | F         | Turf       |           86
+ 17 |      8 | FM        |        2 |            20 | 20 | Allowance Optional Claiming | 3U  NW2$X   | 1000     | F         | Inner turf |          107
+ 18 |      9 | FM        |        2 |            21 | 21 | Stakes                      | 3U          | 1200     | F         | Turf       |          114
+ 19 |     10 | FM        |        2 |            22 | 22 | Maiden Claiming             | 3UFS        | 850      | F         | Inner turf |           71
+ 20 |      1 | FT        |        3 |            23 | 23 | Claiming                    | 3UF         | 600      | F         | Dirt       |           87
+ 21 |      2 | FM        |        3 |            24 | 24 | Maiden Claiming             | 3UF         | 600      | F         | Inner turf |           70
+ 22 |      3 | FT        |        3 |            25 | 25 | Stakes                      | 3UF C       | 800      | F         | Dirt       |          104
+ 23 |      4 | FM        |        3 |            26 | 26 | Stakes                      | 3U          | 700      | F         | Turf       |          112
+ 24 |      5 | FT        |        3 |            27 | 27 | Maiden Special Weight       | 3U          | 600      | F         | Dirt       |           89
+ 25 |      6 | FM        |        3 |            28 | 28 | Maiden Special Weight       | 02F         | 800      | F         | Turf       |           80
+ 26 |      7 | FM        |        3 |            29 | 29 | Allowance                   | 3U SNW1$X   | 600      | F         | Inner turf |           93
+ 27 |      8 | FM        |        3 |            28 | 28 | Maiden Special Weight       | 02F         | 800      | F         | Turf       |           80
+ 28 |      9 | FT        |        3 |            30 | 30 | Allowance                   | 3U  NW1$X   | 700      | F         | Dirt       |          106
+ 29 |     10 | FM        |        3 |            31 | 31 | Maiden Special Weight       | 02FS        | 600      | F         | Inner turf |           80
+ 30 |      1 | FT        |        4 |            32 | 32 | Claiming                    | 3U          | 600      | F         | Dirt       |          101
+ 31 |      2 | FM        |        4 |            33 | 33 | Maiden Claiming             | 3U          | 850      | F         | Turf       |           90
+ 32 |      3 | FT        |        4 |            34 | 34 | Allowance Optional Claiming | 3UF NW2$X   | 650      | F         | Dirt       |          101
+ 33 |      4 | FM        |        4 |            35 | 35 | Claiming                    | 3UF NW2L    | 850      | F         | Turf       |           79
+ 34 |      5 | FT        |        4 |            36 | 36 | Claiming                    | 3UF         | 650      | F         | Dirt       |           93
+ 35 |      6 | FM        |        4 |            37 | 37 | Maiden Special Weight       | 02 S        | 600      | F         | Inner turf |           82
+ 36 |      7 | FT        |        4 |            38 | 38 | Claiming                    | 3U          | 800      | F         | Dirt       |          108
+ 37 |      8 | FT        |        4 |            39 | 39 | Allowance                   | 3U SNW1$X   | 700      | F         | Dirt       |           96
+ 38 |      9 | FT        |        4 |            40 | 40 | Maiden Claiming             | 02FS        | 550      | F         | Dirt       |           73
+ 39 |      1 | FT        |        5 |            41 | 41 | Claiming                    | 3U          | 850      | F         | Dirt       |           97
+ 40 |      2 | FM        |        5 |            42 | 42 | Maiden Claiming             | 3UF         | 850      | F         | Turf       |           86
+ 41 |      3 | FM        |        5 |            43 | 43 | Claiming                    | 3U  NW3L    | 600      | F         | Inner turf |          102
+ 42 |      4 | FM        |        5 |            44 | 44 | Maiden Claiming             | 3U S        | 700      | F         | Turf       |           80
+ 43 |      5 | FT        |        5 |            45 | 45 | Claiming                    | 3U  NW2L    | 600      | F         | Dirt       |           89
+ 44 |      6 | FT        |        5 |            46 | 46 | Maiden Special Weight       | 02F         | 800      | F         | Dirt       |           81
+ 45 |      7 | FM        |        5 |            47 | 47 | Claiming                    | 3U  NW2L    | 600      | F         | Inner turf |           89
+ 46 |      8 | FT        |        5 |            48 | 48 | Allowance                   | 3U  NW1$X   | 800      | F         | Dirt       |          108
+ 47 |      9 | FM        |        5 |            49 | 49 | Maiden Special Weight       | 3UFS        | 700      | F         | Turf       |           77
+ 48 |      1 | FT        |        6 |            50 | 50 | Maiden Special Weight       | 02          | 800      | F         | Dirt       |           86
+ 49 |      2 | FM        |        6 |            51 | 51 | Claiming                    | 3UF NW3L    | 800      | F         | Turf       |           96
+ 50 |      3 | FT        |        6 |            52 | 52 | Maiden Special Weight       | 02F         | 600      | F         | Dirt       |           80
+ 51 |      4 | FT        |        6 |            53 | 53 | Claiming                    | 3UF NW2L    | 600      | F         | Dirt       |           80
+ 52 |      5 | FM        |        6 |            54 | 54 | Allowance Optional Claiming | 3UFSNW2$X   | 850      | F         | Inner turf |           90
+ 53 |      6 | FM        |        6 |            55 | 55 | Starters Allowance          | 3UF NW2L    | 800      | F         | Turf       |           92
+ 54 |      7 | FT        |        6 |            56 | 56 | Maiden Special Weight       | 02FS        | 650      | F         | Dirt       |           80
+ 55 |      8 | FM        |        6 |            57 | 57 | Allowance                   | 03F NW1$X   | 850      | F         | Turf       |          100
+ 56 |      9 | FM        |        6 |            58 | 58 | Maiden Claiming             | 3UFS        | 600      | F         | Inner turf |           74
+ 57 |      1 | FM        |        7 |            59 | 59 | Allowance                   | 3U  NW1$X   | 850      | F         | Inner turf |          101
+ 58 |      2 | FT        |        7 |            60 | 60 | Maiden Special Weight       | 3UF         | 800      | F         | Dirt       |           88
+ 59 |      3 | FM        |        7 |            61 | 61 | Maiden Claiming             | 3U          | 850      | F         | Turf       |           86
+ 60 |      4 | FT        |        7 |            62 | 62 | Starters Allowance          | 3U  NW2L    | 650      | F         | Dirt       |           98
+ 61 |      5 | FM        |        7 |            63 | 63 | Maiden Special Weight       | 02          | 700      | F         | Turf       |           85
+ 62 |      6 | FM        |        7 |            64 | 64 | Claiming                    | 3U  NW2L    | 850      | F         | Inner turf |           90
+ 63 |      7 | FM        |        7 |            65 | 65 | Stakes                      | 3UF         | 800      | F         | Turf       |          106
+ 64 |      8 | FM        |        7 |            66 | 66 | Stakes                      | 03F         | 900      | F         | Inner turf |          111
+ 65 |      9 | MY        |        7 |            67 | 67 | Maiden Special Weight       | 02          | 600      | F         | Dirt       |           86
+ 66 |     10 | FM        |        7 |            68 | 68 | Allowance Optional Claiming | 3U SNW2$X   | 850      | F         | Turf       |          102
+ 67 |      1 | MY        |        8 |            69 | 69 | Allowance                   | 3UF NW1$X   | 650      | F         | Dirt       |           92
+ 68 |      2 | MY        |        8 |            70 | 70 | Maiden Claiming             | 02F         | 550      | F         | Dirt       |           73
+ 69 |      3 | MY        |        8 |            71 | 71 | Maiden Special Weight       | 3UF         | 600      | F         | Dirt       |           84
+ 70 |      4 | GD        |        8 |            72 | 72 | Stakes                      | 3U S        | 900      | F         | Inner turf |          110
+ 71 |      5 | GD        |        8 |            73 | 73 | Claiming                    | 3U  NW3L    | 800      | F         | Turf       |           98
+ 72 |      6 | GD        |        8 |            74 | 74 | Claiming                    | 3U          | 650      | F         | Dirt       |          108
+ 73 |      7 | GD        |        8 |            75 | 75 | Maiden Special Weight       | 3U          | 900      | F         | Inner turf |           92
+ 74 |      8 | GD        |        8 |            76 | 76 | Allowance Optional Claiming | 3UFSNW2$X   | 700      | F         | Turf       |          100
+ 75 |      9 | GD        |        8 |            77 | 77 | Stakes                      | 3UFS        | 900      | F         | Inner turf |          102
+ 76 |     10 | GD        |        8 |            78 | 78 | Maiden Special Weight       | 02 S        | 800      | F         | Turf       |           84
+(76 rows)
+

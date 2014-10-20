@@ -1,12 +1,40 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
-	<h1>Horses</h1>
+	<h1>
+		Horses ROI <span class="headingNote">(based on $2 investment; <!-- minimum 3 wins; --> ROI greater than $5)</span>
+	</h1>
+	
+	<% Horse.distinct_tracks.each do |horseTracks| %>
+
+		<h2><%= horseTracks.track_name.titleize %></h2>
+
+		<table>
+			<tr>
+				<th>Horse Name</th>
+				<th>Win ROI</th>
+				<th>Wins</th>
+			</tr>
+			<% Horse.with_win_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 0").each do |horseROI| %>
+			<tr>
+				<td><%= horseROI.horse_name %></td>
+				<td class="decimal">$<%= horseROI.win_roi %> </td>
+				<td class="raceCount"><%= horseROI.wins %></td>
+			</tr>
+			<% end %>			
+		</table>	
+
+	<% end %>		
+
+<!-- 	<hr />
 
 	<% @horses.each do |horse| %>  
 	
-		<%= horse.horse_name %>
+		<%= horse.horse_name %> 
+
+		<%= horse.number_of_wins %>	
+
 		<br />
 
-	<% end %>
+	<% end %> -->
 
 </div>

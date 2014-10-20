@@ -1,5 +1,29 @@
 class Trainer < ActiveRecord::Base
 
+	TRAINER_ROI_SELECT = "( sum(entries.win_payoff) - (2 * count(trainers.id)) / (2 * count(trainers.id) ) )"
+
+	TRAINER_DISTANCE_CONVERSION = "( race_levels.distance / 100 )"
+
+	scope :with_win_roi, -> {
+		joins({:entries => {:race => [:chart,:race_level]}}).
+		group("charts.track_name, race_levels.id, trainers.id").
+		select("trainers.last_name, trainers.suffix, trainers.first_name, trainers.middle_name, #{TRAINER_ROI_SELECT} as win_roi, charts.track_name, race_levels.race_type, race_levels.restriction, cast(race_levels.distance as int) / 100 as distance, race_levels.dist_unit, race_levels.surface, race_levels.class_rating, count(trainers.id) as total_races,trainers.*,trainers.id").
+		order("win_roi DESC, trainers.last_name, trainers.first_name, race_levels.class_rating DESC")
+	}
+
+	# scope :distinct_tracks, -> {joins({:entries => {:race => [:chart,:race_level]}}).group("charts.track_name, trainers.id").select("trainers.id, charts.track_name")}
+	scope :distinct_tracks, -> {
+		from("charts").
+		select("track_name").distinct
+	}
+
+	scope :distinct_race_levels, -> {
+		joins({:entries => {:race => [:chart,:race_level]}}).
+		group("charts.track_name, race_levels.id").
+		select("charts.track_name, race_levels.race_type, race_levels.restriction, cast(race_levels.distance as int) / 100 as distance, race_levels.dist_unit, race_levels.surface, race_levels.class_rating, race_levels.id").
+		order("race_levels.class_rating DESC")
+	}	
+
 	has_many :entries
 
 

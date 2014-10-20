@@ -1,12 +1,40 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
-	<h1>Trainers</h1>
+	<h1>
+		Trainer ROI <span class="headingNote">(based on $2 investment)</span>
+	</h1>
 
-	<% @trainers.each do |trainer| %>  
+		<% Trainer.distinct_tracks.each do |trainerTracks| %>
+
+			<h2><%= trainerTracks.track_name.titleize %></h2>
+
+				<% Trainer.distinct_race_levels.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_ROI_SELECT} > 5").each do |raceLevels| %>
+				
+					<h3>	
+						<%= raceLevels.race_type %> for <%= raceLevels.restriction %>
+						<%= raceLevels.distance %><%= raceLevels.dist_unit %> on <%= raceLevels.surface %> - 
+						[Class Rating: <%= raceLevels.class_rating %>]
+					</h3>
 	
-		<b><%= trainer.last_name %> <%= trainer.suffix %></b>, <%= trainer.first_name %> <%= trainer.middle_name %> [KEY: <%= trainer.key %> TYPE: <%= trainer.trainer_type %>]
-		<br />
+					<% Trainer.with_win_roi.where("track_name = ? and race_levels.id = ?",trainerTracks.track_name, raceLevels.id).having("#{Trainer::TRAINER_ROI_SELECT} > 5").each do |trainerROI| %>
+					
+						<table>
+							<tr>
+								<td><%= trainerROI.last_name %>, <%= trainerROI.suffix %> <%= trainerROI.first_name %> <%= trainerROI.middle_name %>: </td>
+								<td>$<%= trainerROI.win_roi %> - </td>
+								<td>[<%= trainerROI.total_races %> races]</td>
+							</tr>
+						</table>
 
-	<% end %>
+					<% end %>
+
+				<% end %>
+
+			<br />
+
+		<% end %>
+
+	<hr />
 
 </div>
+
