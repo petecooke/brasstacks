@@ -1,4 +1,5 @@
 Brasstacks::Application.routes.draw do
+  devise_for :users
   root 'static_pages#index'
   resources :charts, :only => [:new, :create, :index, :show, :destroy]
   resources :race_levels, :only => [:index]

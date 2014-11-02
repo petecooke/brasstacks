@@ -1,29 +1,100 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
 	<h1>
-		Horses ROI <span class="headingNote">(based on $2 investment; <!-- minimum 3 wins; --> ROI greater than $5)</span>
+		Horses!<span class="headingNote"></span>
 	</h1>
+
+	<h2>
+		Win ROI*
+	</h2>
 	
 	<% Horse.distinct_tracks.each do |horseTracks| %>
 
-		<h2><%= horseTracks.track_name.titleize %></h2>
+		<h3><%= horseTracks.track_name.titleize %></h3>
 
-		<table>
+		<table class="table table-condensed table-bordered table-hover">
 			<tr>
 				<th>Horse Name</th>
 				<th>Win ROI</th>
 				<th>Wins</th>
+				<th>Total Races</th>
 			</tr>
-			<% Horse.with_win_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 0").each do |horseROI| %>
+			<% Horse.with_win_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
 			<tr>
-				<td><%= horseROI.horse_name %></td>
-				<td class="decimal">$<%= horseROI.win_roi %> </td>
-				<td class="raceCount"><%= horseROI.wins %></td>
+				<td><%= horseWinROI.horse_name %></td>
+				<td class="decimal">$<%= horseWinROI.win_roi %> </td>
+				<td class="raceCount"><%= horseWinROI.wins %></td>
+				<td class="raceCount"><%= horseWinROI.total_races %></td>
 			</tr>
 			<% end %>			
 		</table>	
 
 	<% end %>		
+
+	<h2>
+		Place ROI*
+	</h2>
+	
+	<% Horse.distinct_tracks.each do |horseTracks| %>
+
+		<% if Horse.with_place_roi %>
+
+			<h3><%= horseTracks.track_name.titleize %></h3>
+
+			<table class="table table-condensed table-bordered table-hover">
+				<tr>
+					<th>Horse Name</th>
+					<th>Place ROI</th>
+					<th>Places</th>
+					<th>Total Races</th>
+				</tr>
+				<% Horse.with_place_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_PLACE_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_PLACES} > 1").each do |horsePlaceROI| %>
+				<tr>
+					<td><%= horsePlaceROI.horse_name %></td>
+					<td class="decimal">$<%= horsePlaceROI.place_roi %> </td>
+					<td class="raceCount"><%= horsePlaceROI.places %></td>
+					<td class="raceCount"><%= horsePlaceROI.total_races %></td>
+				</tr>
+				<% end %>			
+			</table>	
+
+		<% end %>
+
+	<% end %>	
+
+
+	<h2>
+		Show ROI*
+	</h2>
+	
+	<% Horse.distinct_tracks.each do |horseTracks| %>
+
+		<% if Horse.with_show_roi %>
+
+			<h3><%= horseTracks.track_name.titleize %></h3>
+
+			<table class="table table-condensed table-bordered table-hover">
+				<tr>
+					<th>Horse Name</th>
+					<th>Show ROI</th>
+					<th>Shows</th>
+					<th>Total Races</th>
+				</tr>
+				<% Horse.with_show_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_SHOW_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_SHOWS} > 1").each do |horseShowROI| %>
+				<tr>
+					<td><%= horseShowROI.horse_name %></td>
+					<td class="decimal">$<%= horseShowROI.show_roi %> </td>
+					<td class="raceCount"><%= horseShowROI.shows %></td>
+					<td class="raceCount"><%= horseShowROI.total_races %></td>
+				</tr>
+				<% end %>			
+			</table>	
+
+		<% end %>
+
+	<% end %>		
+
+	<span class="headingNote">* Note: (based on $2 investment; minimum 2 win/place/show; ROI greater than $5)</span>	
 
 <!-- 	<hr />
 

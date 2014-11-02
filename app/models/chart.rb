@@ -2,8 +2,15 @@ class Chart < ActiveRecord::Base
 	has_many :races, :dependent => :destroy
 	
 	before_create :parse_xml
+	before_validation :generate_fingerprint
 
 	mount_uploader :chart, ChartUploader
+
+	def generate_fingerprint
+
+		self.fingerprint = Digest::SHA1.hexdigest(chart_data)
+
+	end
 
 	def chart_data
 		self.chart.read

@@ -51,6 +51,9 @@ gem "fog", "~> 1.3.1"
 # Use nokogiri to read XML
 gem 'nokogiri'
 
+# Use devise for user setup
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
