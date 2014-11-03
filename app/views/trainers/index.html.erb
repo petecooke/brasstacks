@@ -50,7 +50,7 @@
 					<th>Places</th>
 					<th>Total Races</th>
 				</tr>
-				<% Trainer.with_place_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_PLACE_ROI_SELECT} > 5 and #{Trainer::TRAINER_NUMBER_OF_PLACES} > 1").each do |trainerPlaceROI| %>
+				<% Trainer.with_place_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_PLACE_ROI_SELECT} > 1 and #{Trainer::TRAINER_NUMBER_OF_PLACES} > 1").each do |trainerPlaceROI| %>
 				<tr>
 					<td>
 						<%= trainerPlaceROI.last_name %><% if trainerPlaceROI.suffix != "" %> <%= trainerPlaceROI.suffix %><% end%>, <%= trainerPlaceROI.first_name %> <%= trainerPlaceROI.middle_name %>
@@ -84,7 +84,7 @@
 					<th>Shows</th>
 					<th>Total Races</th>
 				</tr>
-				<% Trainer.with_show_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_SHOW_ROI_SELECT} > 5 and #{Trainer::TRAINER_NUMBER_OF_SHOWS} > 1").each do |trainerShowROI| %>
+				<% Trainer.with_show_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_SHOW_ROI_SELECT} > 1 and #{Trainer::TRAINER_NUMBER_OF_SHOWS} > 1").each do |trainerShowROI| %>
 				<tr>
 					<td>
 						<%= trainerShowROI.last_name %><% if trainerShowROI.suffix != "" %> <%= trainerShowROI.suffix %><% end%>, <%= trainerShowROI.first_name %> <%= trainerShowROI.middle_name %>
@@ -100,6 +100,6 @@
 
 	<% end %>		
 
-	<span class="headingNote">* Note: (based on $2 investment; minimum 2 win/place/show; ROI greater than $5)</span>	
+	<span class="headingNote">* Note: (based on $2 investment; minimum 2 win/place/show; ROI greater than $5 (win), $1 (place/show))</span>	
 
 </div>

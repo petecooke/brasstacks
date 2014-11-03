@@ -80,7 +80,7 @@
 					<th>Shows</th>
 					<th>Total Races</th>
 				</tr>
-				<% Horse.with_show_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_SHOW_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_SHOWS} > 1").each do |horseShowROI| %>
+				<% Horse.with_show_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_SHOW_ROI_SELECT} > 0 and #{Horse::HORSE_NUMBER_OF_SHOWS} > 1").each do |horseShowROI| %>
 				<tr>
 					<td><%= horseShowROI.horse_name %></td>
 					<td class="decimal">$<%= horseShowROI.show_roi %> </td>
@@ -94,7 +94,7 @@
 
 	<% end %>		
 
-	<span class="headingNote">* Note: (based on $2 investment; minimum 2 win/place/show; ROI greater than $5)</span>	
+	<span class="headingNote">* Note: (based on $2 investment; minimum 2 win/place/show; ROI greater than $5 (win), $0 (show))</span>	
 
 <!-- 	<hr />
 

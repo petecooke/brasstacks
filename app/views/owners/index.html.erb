@@ -1,12 +1,99 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
-	<h1>Owners</h1>
+	<h1>
+		Owners!<span class="headingNote"></span>
+	</h1>
 
-	<% @owners.each do |owner| %>  
+	<h2>
+		Win ROI*
+	</h2>
 	
-		<%= owner.owner_name %>
-		<br />
+	<% Owner.distinct_tracks.each do |ownerTracks| %>
 
-	<% end %>
+		<h3><%= ownerTracks.track_name.titleize %></h3>
+
+		<table class="table table-condensed table-bordered table-hover">
+			<tr>
+				<th>Owner Name</th>
+				<th>Win ROI</th>
+				<th>Wins</th>
+				<th>Total Races</th>
+			</tr>
+			<% Owner.with_win_roi.where("track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_WIN_ROI_SELECT} > 3 and #{Owner::OWNER_NUMBER_OF_WINS} > 1").each do |ownerWinROI| %>
+			<tr>
+				<td><%= ownerWinROI.owner_name %></td>
+				<td class="decimal">$<%= ownerWinROI.win_roi %> </td>
+				<td class="raceCount"><%= ownerWinROI.wins %></td>
+				<td class="raceCount"><%= ownerWinROI.total_races %></td>
+			</tr>
+			<% end %>			
+		</table>	
+
+	<% end %>		
+
+	<h2>
+		Place ROI*
+	</h2>
+	
+	<% Owner.distinct_tracks.each do |ownerTracks| %>
+
+		<% if Owner.with_place_roi %>
+
+			<h3><%= ownerTracks.track_name.titleize %></h3>
+
+			<table class="table table-condensed table-bordered table-hover">
+				<tr>
+					<th>Owner Name</th>
+					<th>Place ROI</th>
+					<th>Places</th>
+					<th>Total Races</th>
+				</tr>
+				<% Owner.with_place_roi.where("track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_PLACE_ROI_SELECT} > 3 and #{Owner::OWNER_NUMBER_OF_PLACES} > 1").each do |ownerPlaceROI| %>
+				<tr>
+					<td><%= ownerPlaceROI.owner_name %></td>
+					<td class="decimal">$<%= ownerPlaceROI.place_roi %> </td>
+					<td class="raceCount"><%= ownerPlaceROI.places %></td>
+					<td class="raceCount"><%= ownerPlaceROI.total_races %></td>
+				</tr>
+				<% end %>			
+			</table>	
+
+		<% end %>
+
+	<% end %>	
+
+
+	<h2>
+		Show ROI*
+	</h2>
+	
+	<% Owner.distinct_tracks.each do |ownerTracks| %>
+
+		<% if Owner.with_show_roi %>
+
+			<h3><%= ownerTracks.track_name.titleize %></h3>
+
+			<table class="table table-condensed table-bordered table-hover">
+				<tr>
+					<th>Owner Name</th>
+					<th>Show ROI</th>
+					<th>Shows</th>
+					<th>Total Races</th>
+				</tr>
+				<% Owner.with_show_roi.where("track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_SHOW_ROI_SELECT} > 1 and #{Owner::OWNER_NUMBER_OF_SHOWS} > 1").each do |ownersShowROI| %>
+				<tr>
+					<td><%= ownersShowROI.owner_name %></td>
+					<td class="decimal">$<%= ownersShowROI.show_roi %> </td>
+					<td class="raceCount"><%= ownersShowROI.shows %></td>
+					<td class="raceCount"><%= ownersShowROI.total_races %></td>
+				</tr>
+				<% end %>			
+			</table>	
+
+		<% end %>
+
+	<% end %>		
+
+	<span class="headingNote">* Note: (based on $2 investment; minimum 2 win/place/show; ROI greater than $3 (win/place), $1 (show))</span>	
 
 </div>
