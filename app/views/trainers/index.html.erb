@@ -52,7 +52,9 @@
 				</tr>
 				<% Trainer.with_place_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_PLACE_ROI_SELECT} > 5 and #{Trainer::TRAINER_NUMBER_OF_PLACES} > 1").each do |trainerPlaceROI| %>
 				<tr>
-					<td><%= trainerPlaceROI.last_name %></td>
+					<td>
+						<%= trainerPlaceROI.last_name %><% if trainerPlaceROI.suffix != "" %> <%= trainerPlaceROI.suffix %><% end%>, <%= trainerPlaceROI.first_name %> <%= trainerPlaceROI.middle_name %>
+					</td>
 					<td class="decimal">$<%= trainerPlaceROI.place_roi %> </td>
 					<td class="raceCount"><%= trainerPlaceROI.places %></td>
 					<td class="raceCount"><%= trainerPlaceROI.total_races %></td>
@@ -84,7 +86,9 @@
 				</tr>
 				<% Trainer.with_show_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_SHOW_ROI_SELECT} > 5 and #{Trainer::TRAINER_NUMBER_OF_SHOWS} > 1").each do |trainerShowROI| %>
 				<tr>
-					<td><%= trainerShowROI.last_name %></td>
+					<td>
+						<%= trainerShowROI.last_name %><% if trainerShowROI.suffix != "" %> <%= trainerShowROI.suffix %><% end%>, <%= trainerShowROI.first_name %> <%= trainerShowROI.middle_name %>
+					</td>					
 					<td class="decimal">$<%= trainerShowROI.show_roi %> </td>
 					<td class="raceCount"><%= trainerShowROI.shows %></td>
 					<td class="raceCount"><%= trainerShowROI.total_races %></td>
