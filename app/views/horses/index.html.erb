@@ -10,24 +10,28 @@
 	
 	<% Horse.distinct_tracks.each do |horseTracks| %>
 
-		<h3><%= horseTracks.track_name.titleize %></h3>
+		<% if Horse.with_place_roi %> <!-- this IF doesn't seem to be working -->
 
-		<table class="table table-condensed table-bordered table-hover">
-			<tr>
-				<th>Horse Name</th>
-				<th>Win ROI</th>
-				<th>Wins</th>
-				<th>Total Races</th>
-			</tr>
-			<% Horse.with_win_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
-			<tr>
-				<td><%= horseWinROI.horse_name %></td>
-				<td class="decimal">$<%= horseWinROI.win_roi %> </td>
-				<td class="raceCount"><%= horseWinROI.wins %></td>
-				<td class="raceCount"><%= horseWinROI.total_races %></td>
-			</tr>
-			<% end %>			
-		</table>	
+			<h3><%= horseTracks.track_name.titleize %></h3>
+
+			<table class="table table-condensed table-bordered table-hover">
+				<tr>
+					<th>Horse Name</th>
+					<th>Win ROI</th>
+					<th>Wins</th>
+					<th>Total Races</th>
+				</tr>
+				<% Horse.with_win_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
+				<tr>
+					<td><%= horseWinROI.horse_name %></td>
+					<td class="decimal">$<%= horseWinROI.win_roi %> </td>
+					<td class="raceCount"><%= horseWinROI.wins %></td>
+					<td class="raceCount"><%= horseWinROI.total_races %></td>
+				</tr>
+				<% end %>			
+			</table>	
+
+		<% end %>
 
 	<% end %>		
 

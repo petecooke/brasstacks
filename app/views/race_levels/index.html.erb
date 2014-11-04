@@ -1,14 +1,46 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
-	<h1>Race Levels</h1>
+	<h2>Race Levels!</h2>
 
-	<% @racelevels.each do |racelevel| %>  
+<!-- 	<% @racelevels.each do |racelevel| %>  
 
 		<b><%= racelevel.race_type %> for <%= racelevel.restriction %></b>
 		<%= racelevel.distance %><%= racelevel.dist_unit %> on <%= racelevel.surface %> - 
 		<%= racelevel.class_rating %>
 		<br />
 
+	<% end %> -->
+
+
+<!-- 	<% RaceLevel.distinct_race_levels.each do |racelevel| %>  
+
+		<b><%= racelevel.track_name %> - <%= racelevel.race_type %> for <%= racelevel.restriction %></b>
+		<%= racelevel.distance %><%= racelevel.dist_unit %> on <%= racelevel.surface %> - 
+		(class rating: <%= racelevel.class_rating %>)
+		<br />
+
+	<% end %>	 -->
+
+	<% RaceLevel.distinct_tracks.each do |raceLevelTracks| %>
+
+		<h3><%= raceLevelTracks.track_name.titleize %></h3>
+
+		<table class="table table-condensed table-bordered table-hover">
+			<tr>
+				<th>Race Type/Restriction</th>
+				<th>Distance</th>
+				<th>Surface</th>
+				<th>Class Rating</th>
+			</tr>
+			<% RaceLevel.distinct_race_levels.where("track_name = ?", raceLevelTracks.track_name).each do |racelevel| %>  
+			<tr>
+				<td><%= racelevel.race_type %> <%= racelevel.restriction %></td>
+				<td class="text-right"><%= racelevel.distance %><%= racelevel.dist_unit %></td>
+				<td class="text-center"><%= racelevel.surface %></td>
+				<td class="text-center"><%= racelevel.class_rating %></td>
+			</tr>
+			<% end %>			
+		</table>	
 	<% end %>
 
-</div>
+</div>	
