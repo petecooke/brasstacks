@@ -15,7 +15,9 @@
 		<br />
 
 		<!-- <div class="col-sm-4 text-center"> -->
-			<%= link_to 'Charts', charts_path, :class => 'btn btn-success' %>
+			<% if current_user && current_user.admin  %>
+				<%= link_to 'Charts', charts_path, :class => 'btn btn-success' %>
+			<% end %>
 			<%= link_to 'Race Levels', race_levels_path, :class => 'btn btn-success' %>	
 			<%= link_to 'Horses', horses_path, :class => 'btn btn-success' %>			
 			<%= link_to 'Jockeys', jockeys_path, :class => 'btn btn-success' %>		
