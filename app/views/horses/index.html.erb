@@ -21,7 +21,7 @@
 					<th>Wins</th>
 					<th>Total Races</th>
 				</tr>
-				<% Horse.with_win_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
+				<% Horse.with_win_roi.where("charts.track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
 				<tr>
 					<td><%= horseWinROI.horse_name %></td>
 					<td class="decimal">$<%= horseWinROI.win_roi %> </td>
@@ -52,7 +52,7 @@
 					<th>Places</th>
 					<th>Total Races</th>
 				</tr>
-				<% Horse.with_place_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_PLACE_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_PLACES} > 1").each do |horsePlaceROI| %>
+				<% Horse.with_place_roi.where("charts.track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_PLACE_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_PLACES} > 1").each do |horsePlaceROI| %>
 				<tr>
 					<td><%= horsePlaceROI.horse_name %></td>
 					<td class="decimal">$<%= horsePlaceROI.place_roi %> </td>
@@ -84,7 +84,7 @@
 					<th>Shows</th>
 					<th>Total Races</th>
 				</tr>
-				<% Horse.with_show_roi.where("track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_SHOW_ROI_SELECT} > 0 and #{Horse::HORSE_NUMBER_OF_SHOWS} > 1").each do |horseShowROI| %>
+				<% Horse.with_show_roi.where("charts.track_name = ?", horseTracks.track_name).having("#{Horse::HORSE_SHOW_ROI_SELECT} > 0 and #{Horse::HORSE_NUMBER_OF_SHOWS} > 1").each do |horseShowROI| %>
 				<tr>
 					<td><%= horseShowROI.horse_name %></td>
 					<td class="decimal">$<%= horseShowROI.show_roi %> </td>
