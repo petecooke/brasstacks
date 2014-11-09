@@ -1,8 +1,34 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
 
 	<h1>
-		Horses!<span class="headingNote"></span>
+		Horses!
 	</h1>
+
+	<h2>
+		John Henry - Mfcka Older Than You - 9yr+ ROI**
+	</h2>
+
+		<table class="table table-condensed table-bordered table-hover">
+			<tr>
+				<th>Horse Name</th>
+				<th>Win ROI</th>
+				<th>Wins</th>
+				<th>Total Races</th>
+				<th>Age</th>
+			</tr>
+			<% Horse.horses_9yo_roi.where("entries.age >= ?", 9).having("#{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horse9yoWinROI| %>
+			<tr>
+				<td><%= horse9yoWinROI.horse_name %></td>
+				<td class="decimal">$<%= horse9yoWinROI.win_roi %> </td>
+				<td class="raceCount"><%= horse9yoWinROI.wins %></td>
+				<td class="raceCount"><%= horse9yoWinROI.total_races %></td>
+				<td><%= horse9yoWinROI.age %></td>
+			</tr>
+			<% end %>			
+		</table>	
+
+	<span class="headingNote">**all horses 9 and up 'cuz John Henry won HOY when he was 9 years old, mfcka!</span>
+
 
 	<h2>
 		Win ROI*

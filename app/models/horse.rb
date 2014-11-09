@@ -36,6 +36,15 @@ class Horse < ActiveRecord::Base
 		select("track_name").distinct
 	}	
 
+	scope :horses_9yo_roi, -> {
+		joins({:entries => {:race => [:chart,:race_level]}}).
+		group("horses.id, entries.age").
+		select("CAST(#{HORSE_WIN_ROI_SELECT} as decimal(10,2)) as win_roi,horses.*,horses.id, #{HORSE_NUMBER_OF_WINS} as wins, #{HORSE_NUMBER_OF_RACES} as total_races, entries.age").
+		order("win_roi DESC")		
+	}
+
+
+
 	has_many :entries
 
 	def number_of_wins

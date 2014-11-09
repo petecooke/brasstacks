@@ -67,7 +67,8 @@ class Chart < ActiveRecord::Base
 				:race_level_id => race_level.id,
 				:number =>  element['NUMBER'].to_i,
 				:breed => element.css('BREED').first.content,
-				:condition => element.css('TRK_COND').first.content
+				:condition => element.css('TRK_COND').first.content,
+				:meet_season => element.css('TRK_COND').first.content
 			)
 
 
