@@ -34,14 +34,10 @@ class Chart < ActiveRecord::Base
 
 		puts self.track_name
 
-
-
-
 		# screen dump
 		# puts element.content
 
 		# loop through file
-
 		doc.css('CHART RACE').each do |element|
 
 			#RACE LEVEL
@@ -68,7 +64,9 @@ class Chart < ActiveRecord::Base
 				:number =>  element['NUMBER'].to_i,
 				:breed => element.css('BREED').first.content,
 				:condition => element.css('TRK_COND').first.content,
-				:meet_season => element.css('TRK_COND').first.content
+				:meet_season => "Fall", # TOTAL CHEAT HERE ... hardcoded until functionality is added
+				:race_date => doc.css('CHART').first['RACE_DATE'].to_date,
+				:track_name => doc.css('CHART TRACK NAME')[0].content
 			)
 
 

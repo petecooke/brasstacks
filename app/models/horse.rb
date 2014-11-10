@@ -43,8 +43,6 @@ class Horse < ActiveRecord::Base
 		order("win_roi DESC")		
 	}
 
-
-
 	has_many :entries
 
 	def number_of_wins

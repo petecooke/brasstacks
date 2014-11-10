@@ -20,18 +20,39 @@
 			<tr>
 				<td><%= horse9yoWinROI.horse_name %></td>
 				<td class="decimal">$<%= horse9yoWinROI.win_roi %> </td>
-				<td class="raceCount"><%= horse9yoWinROI.wins %></td>
-				<td class="raceCount"><%= horse9yoWinROI.total_races %></td>
-				<td><%= horse9yoWinROI.age %></td>
+				<td class="text-center"><%= horse9yoWinROI.wins %></td>
+				<td class="text-center"><%= horse9yoWinROI.total_races %></td>
+				<td class="text-center"><%= horse9yoWinROI.age %></td>
 			</tr>
 			<% end %>			
 		</table>	
 
 	<span class="headingNote">**all horses 9 and up 'cuz John Henry won HOY when he was 9 years old, mfcka!</span>
 
-
 	<h2>
 		Win ROI*
+	</h2>
+
+	<table class="table table-condensed table-bordered table-hover">
+		<tr>
+			<th>Horse Name</th>
+			<th>Win ROI</th>
+			<th>Wins</th>
+			<th>Total Races</th>
+		</tr>
+		<% Horse.with_win_roi.having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
+		<tr>
+			<td><%= horseWinROI.horse_name %></td>
+			<td class="decimal">$<%= horseWinROI.win_roi %> </td>
+			<td class="text-center"><%= horseWinROI.wins %></td>
+			<td class="text-center"><%= horseWinROI.total_races %></td>
+		</tr>
+		<% end %>			
+	</table>	
+				
+
+	<h2>
+		Win ROI* (by track)
 	</h2>
 	
 	<% Horse.distinct_tracks.each do |horseTracks| %>
@@ -51,8 +72,8 @@
 				<tr>
 					<td><%= horseWinROI.horse_name %></td>
 					<td class="decimal">$<%= horseWinROI.win_roi %> </td>
-					<td class="raceCount"><%= horseWinROI.wins %></td>
-					<td class="raceCount"><%= horseWinROI.total_races %></td>
+					<td class="text-center"><%= horseWinROI.wins %></td>
+					<td class="text-center"><%= horseWinROI.total_races %></td>
 				</tr>
 				<% end %>			
 			</table>	
@@ -62,7 +83,7 @@
 	<% end %>		
 
 	<h2>
-		Place ROI*
+		Place ROI* (by track)
 	</h2>
 	
 	<% Horse.distinct_tracks.each do |horseTracks| %>
@@ -82,8 +103,8 @@
 				<tr>
 					<td><%= horsePlaceROI.horse_name %></td>
 					<td class="decimal">$<%= horsePlaceROI.place_roi %> </td>
-					<td class="raceCount"><%= horsePlaceROI.places %></td>
-					<td class="raceCount"><%= horsePlaceROI.total_races %></td>
+					<td class="text-center"><%= horsePlaceROI.places %></td>
+					<td class="text-center"><%= horsePlaceROI.total_races %></td>
 				</tr>
 				<% end %>			
 			</table>	
@@ -94,7 +115,7 @@
 
 
 	<h2>
-		Show ROI*
+		Show ROI* (by track)
 	</h2>
 	
 	<% Horse.distinct_tracks.each do |horseTracks| %>

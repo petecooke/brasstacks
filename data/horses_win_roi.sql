@@ -99,4 +99,3 @@ SELECT h.horse_name, CAST(e.official_finish as INT), e.win_payoff
 
 
  
- 
