@@ -19,7 +19,7 @@
 				<th>Wins</th>
 				<th>Total Races</th>
 			</tr>
-			<% Owner.with_win_roi.where("track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_WIN_ROI_SELECT} > 3 and #{Owner::OWNER_NUMBER_OF_WINS} > 1").each do |ownerWinROI| %>
+			<% Owner.with_win_roi.where("charts.track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_WIN_ROI_SELECT} > 3 and #{Owner::OWNER_NUMBER_OF_WINS} > 1").each do |ownerWinROI| %>
 			<tr>
 				<td><%= ownerWinROI.owner_name %></td>
 				<td class="decimal">$<%= ownerWinROI.win_roi %> </td>
@@ -48,7 +48,7 @@
 					<th>Places</th>
 					<th>Total Races</th>
 				</tr>
-				<% Owner.with_place_roi.where("track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_PLACE_ROI_SELECT} > 3 and #{Owner::OWNER_NUMBER_OF_PLACES} > 1").each do |ownerPlaceROI| %>
+				<% Owner.with_place_roi.where("charts.track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_PLACE_ROI_SELECT} > 3 and #{Owner::OWNER_NUMBER_OF_PLACES} > 1").each do |ownerPlaceROI| %>
 				<tr>
 					<td><%= ownerPlaceROI.owner_name %></td>
 					<td class="decimal">$<%= ownerPlaceROI.place_roi %> </td>
@@ -80,7 +80,7 @@
 					<th>Shows</th>
 					<th>Total Races</th>
 				</tr>
-				<% Owner.with_show_roi.where("track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_SHOW_ROI_SELECT} > 1 and #{Owner::OWNER_NUMBER_OF_SHOWS} > 1").each do |ownersShowROI| %>
+				<% Owner.with_show_roi.where("charts.track_name = ?", ownerTracks.track_name).having("#{Owner::OWNER_SHOW_ROI_SELECT} > 1 and #{Owner::OWNER_NUMBER_OF_SHOWS} > 1").each do |ownersShowROI| %>
 				<tr>
 					<td><%= ownersShowROI.owner_name %></td>
 					<td class="decimal">$<%= ownersShowROI.show_roi %> </td>

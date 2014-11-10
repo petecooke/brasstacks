@@ -19,7 +19,7 @@
 				<th>Wins</th>
 				<th>Total Races</th>
 			</tr>
-			<% Trainer.with_win_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_WIN_ROI_SELECT} > 5 and #{Trainer::TRAINER_NUMBER_OF_WINS} > 1").each do |trainerWinROI| %>
+			<% Trainer.with_win_roi.where("charts.track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_WIN_ROI_SELECT} > 5 and #{Trainer::TRAINER_NUMBER_OF_WINS} > 1").each do |trainerWinROI| %>
 				<tr>
 					<td>
 						<%= trainerWinROI.last_name %><% if trainerWinROI.suffix != "" %> <%= trainerWinROI.suffix %><% end%>, <%= trainerWinROI.first_name %> <%= trainerWinROI.middle_name %>
@@ -50,7 +50,7 @@
 					<th>Places</th>
 					<th>Total Races</th>
 				</tr>
-				<% Trainer.with_place_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_PLACE_ROI_SELECT} > 1 and #{Trainer::TRAINER_NUMBER_OF_PLACES} > 1").each do |trainerPlaceROI| %>
+				<% Trainer.with_place_roi.where("charts.track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_PLACE_ROI_SELECT} > 1 and #{Trainer::TRAINER_NUMBER_OF_PLACES} > 1").each do |trainerPlaceROI| %>
 				<tr>
 					<td>
 						<%= trainerPlaceROI.last_name %><% if trainerPlaceROI.suffix != "" %> <%= trainerPlaceROI.suffix %><% end%>, <%= trainerPlaceROI.first_name %> <%= trainerPlaceROI.middle_name %>
@@ -84,7 +84,7 @@
 					<th>Shows</th>
 					<th>Total Races</th>
 				</tr>
-				<% Trainer.with_show_roi.where("track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_SHOW_ROI_SELECT} > 1 and #{Trainer::TRAINER_NUMBER_OF_SHOWS} > 1").each do |trainerShowROI| %>
+				<% Trainer.with_show_roi.where("charts.track_name = ?", trainerTracks.track_name).having("#{Trainer::TRAINER_SHOW_ROI_SELECT} > 1 and #{Trainer::TRAINER_NUMBER_OF_SHOWS} > 1").each do |trainerShowROI| %>
 				<tr>
 					<td>
 						<%= trainerShowROI.last_name %><% if trainerShowROI.suffix != "" %> <%= trainerShowROI.suffix %><% end%>, <%= trainerShowROI.first_name %> <%= trainerShowROI.middle_name %>

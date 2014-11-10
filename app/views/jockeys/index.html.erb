@@ -19,7 +19,7 @@
 				<th>Wins</th>
 				<th>Total Races</th>
 			</tr>
-			<% Jockey.with_win_roi.where("track_name = ?", jockeyTracks.track_name).having("#{Jockey::JOCKEY_WIN_ROI_SELECT} > 0 and #{Jockey::JOCKEY_NUMBER_OF_WINS} > 2").each do |jockeyWinROI| %>
+			<% Jockey.with_win_roi.where("charts.track_name = ?", jockeyTracks.track_name).having("#{Jockey::JOCKEY_WIN_ROI_SELECT} > 0 and #{Jockey::JOCKEY_NUMBER_OF_WINS} > 2").each do |jockeyWinROI| %>
 				<tr>
 					<td>
 						<%= jockeyWinROI.last_name %><% if jockeyWinROI.suffix != "" %> <%= jockeyWinROI.suffix %><% end%>, <%= jockeyWinROI.first_name %> <%= jockeyWinROI.middle_name %>
@@ -50,7 +50,7 @@
 					<th>Places</th>
 					<th>Total Races</th>
 				</tr>
-				<% Jockey.with_place_roi.where("track_name = ?", jockeyTracks.track_name).having("#{Jockey::JOCKEY_PLACE_ROI_SELECT} > 0 and #{Jockey::JOCKEY_NUMBER_OF_PLACES} > 1").each do |jockeyPlaceROI| %>
+				<% Jockey.with_place_roi.where("charts.track_name = ?", jockeyTracks.track_name).having("#{Jockey::JOCKEY_PLACE_ROI_SELECT} > 0 and #{Jockey::JOCKEY_NUMBER_OF_PLACES} > 1").each do |jockeyPlaceROI| %>
 				<tr>
 					<td>
 						<%= jockeyPlaceROI.last_name %><% if jockeyPlaceROI.suffix != "" %> <%= jockeyPlaceROI.suffix %><% end%>, <%= jockeyPlaceROI.first_name %> <%= jockeyPlaceROI.middle_name %>
@@ -84,7 +84,7 @@
 					<th>Shows</th>
 					<th>Total Races</th>
 				</tr>
-				<% Jockey.with_show_roi.where("track_name = ?", jockeyTracks.track_name).having("#{Jockey::JOCKEY_SHOW_ROI_SELECT} > 0 and #{Jockey::JOCKEY_NUMBER_OF_SHOWS} > 1").each do |jockeyShowROI| %>
+				<% Jockey.with_show_roi.where("charts.track_name = ?", jockeyTracks.track_name).having("#{Jockey::JOCKEY_SHOW_ROI_SELECT} > 0 and #{Jockey::JOCKEY_NUMBER_OF_SHOWS} > 1").each do |jockeyShowROI| %>
 				<tr>
 					<td>
 						<%= jockeyShowROI.last_name %><% if jockeyShowROI.suffix != "" %> <%= jockeyShowROI.suffix %><% end%>, <%= jockeyShowROI.first_name %> <%= jockeyShowROI.middle_name %>

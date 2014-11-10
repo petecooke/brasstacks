@@ -32,7 +32,7 @@
 				<th>Surface</th>
 				<th>Class Rating</th>
 			</tr>
-			<% RaceLevel.distinct_race_levels.where("track_name = ?", raceLevelTracks.track_name).each do |racelevel| %>  
+			<% RaceLevel.distinct_race_levels.where("charts.track_name = ?", raceLevelTracks.track_name).each do |racelevel| %>  
 			<tr>
 				<td><%= racelevel.race_type %> <%= racelevel.restriction %></td>
 				<td class="text-right"><%= racelevel.distance %><%= racelevel.dist_unit %></td>
