@@ -27,7 +27,7 @@ SELECT h.horse_name,
  INNER JOIN race_levels rl ON (rl.id = r.race_level_id)
  INNER JOIN entries e ON (e.race_id = r.id)
  INNER JOIN horses h ON (h.id = e.horse_id)
- --WHERE h.horse_name = 'Back Forty'
+ WHERE h.id = 2541
  GROUP BY h.id
  ORDER BY win_roi DESC;
 
@@ -98,4 +98,26 @@ SELECT h.horse_name, CAST(e.official_finish as INT), e.win_payoff
  --ORDER BY win_roi DESC;
 
 
- 
+
+  -- include Place and Show ROI in select
+ SELECT h.horse_name,
+	   ( (sum(e.win_payoff) - (2 * count(h.id))) / (2 * count(h.id) ) ) as win_roi,
+	   SUM(CASE WHEN CAST(e.official_finish as int) = 1 THEN 1
+	   	        ELSE 0
+	   	        END
+	   	   ) as number_of_wins,
+	   count(h.id) as number_of_races,
+	   ( (sum(e.place_payoff) - (2 * count(h.id))) / (2 * count(h.id) ) ) as place_roi,
+	   ( (sum(e.show_payoff) - (2 * count(h.id))) / (2 * count(h.id) ) ) as show_roi
+  FROM charts c
+ INNER JOIN races r ON (r.chart_id = c.id)
+ INNER JOIN race_levels rl ON (rl.id = r.race_level_id)
+ INNER JOIN entries e ON (e.race_id = r.id)
+ INNER JOIN horses h ON (h.id = e.horse_id)
+ WHERE h.id = 2541
+ GROUP BY h.id
+ HAVING	SUM(CASE WHEN CAST(e.official_finish as int) = 1 THEN 1
+	   	        ELSE 0
+	   	        END
+	   	   ) > 1
+ ORDER BY win_roi DESC;

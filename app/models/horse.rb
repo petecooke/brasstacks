@@ -24,12 +24,24 @@ class Horse < ActiveRecord::Base
 		order("place_roi DESC")
 	}
 
+	scope :only_place_roi, -> {
+		joins({:entries => {:race => [:chart,:race_level]}}).
+		group("horses.id").
+		select("CAST(#{HORSE_PLACE_ROI_SELECT} as decimal(10,2)) as place_roi")
+	}
+
 	scope :with_show_roi, -> {
 		joins({:entries => {:race => [:chart,:race_level]}}).
 		group("horses.id").
 		select("CAST(#{HORSE_SHOW_ROI_SELECT} as decimal(10,2)) as show_roi,horses.*,horses.id, #{HORSE_NUMBER_OF_SHOWS} as shows, #{HORSE_NUMBER_OF_RACES} as total_races").
 		order("show_roi DESC")
 	}
+
+	scope :only_show_roi, -> {
+		joins({:entries => {:race => [:chart,:race_level]}}).
+		group("horses.id").
+		select("CAST(#{HORSE_SHOW_ROI_SELECT} as decimal(10,2)) as show_roi")
+	}	
 
 	scope :distinct_tracks, -> {
 		from("charts").

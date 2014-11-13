@@ -39,17 +39,25 @@
 			<th>Win ROI</th>
 			<th>Wins</th>
 			<th>Total Races</th>
+			<th>Place ROI</th>
+			<th>Show ROI</th>
 		</tr>
 		<% Horse.with_win_roi.having("#{Horse::HORSE_WIN_ROI_SELECT} > 5 and #{Horse::HORSE_NUMBER_OF_WINS} > 1").each do |horseWinROI| %>
-		<tr>
-			<td><%= horseWinROI.horse_name %></td>
-			<td class="decimal">$<%= horseWinROI.win_roi %> </td>
-			<td class="text-center"><%= horseWinROI.wins %></td>
-			<td class="text-center"><%= horseWinROI.total_races %></td>
-		</tr>
+			<tr>
+				<td><%= horseWinROI.horse_name %></td>
+				<td class="decimal">$<%= horseWinROI.win_roi %> </td>
+				<td class="text-center"><%= horseWinROI.wins %></td>
+				<td class="text-center"><%= horseWinROI.total_races %></td>
+				<td class="decimal">
+					<%= Horse.only_place_roi.find(horseWinROI.id).place_roi %>
+				</td>
+				<td class="decimal">
+					<%= Horse.only_show_roi.find(horseWinROI.id).show_roi %>
+				</td>				
+			</tr>
 		<% end %>			
 	</table>	
-				
+
 
 	<h2>
 		Win ROI* (by track)
